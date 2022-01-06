@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 
 export const Image =styled.img`
-margin-bottom:29px;
+margin-bottom:32px;
 `
 export const Button = styled.button`
 width:303px;
