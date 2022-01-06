@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
+
 export const Image =styled.img`
-margin-bottom:32px;
+margin-bottom:29px;
 `
 export const Button = styled.button`
 width:303px;

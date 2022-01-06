@@ -1,9 +1,9 @@
-import {Button,Input,Frame,Text} from './style'
+import {Button,Input,Frame,Text, Image} from './style'
 export default function InitPage(){
     return(
         <>
             <Frame className="frame">
-                <img src="./images/logo.png" alt="logo TrackIt" /> 
+                <Image src="./images/logo.png" alt="logo TrackIt" /> 
                 <Input type="email" placeholder="email" /> 
                 <Input type="password" placeholder="senha"/>  
                 <Button>Entrar</Button>     
