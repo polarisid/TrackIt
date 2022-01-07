@@ -27,11 +27,8 @@ export default function BottomBar(){
                     trailColor: "transparent"
                     })}
                 />
-                {/* Hoje */}
             </FloatButton>
-
             </UpFrame>
-
             <p>Histórico</p>
         </BottomBarContainer>
         </>
