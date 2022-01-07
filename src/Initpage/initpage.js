@@ -15,8 +15,8 @@ export default function InitPage(){
                 
                 <Image src="./images/logo.png" alt="logo TrackIt" /> 
                 <form onSubmit={submit} >
-                <Input onChange={(e)=>(setEmail(e.target.value))} value={email}type="email" placeholder="email" /> 
-                <Input onChange={(e)=>(setPassword(e.target.value))} value={password} type="password" placeholder="senha"/>  
+                <Input onChange={(e)=>(setEmail(e.target.value))} value={email}type="email" placeholder="email" required /> 
+                <Input onChange={(e)=>(setPassword(e.target.value))} value={password} type="password" placeholder="senha" required/>  
                 <Button type="submit">Entrar</Button>
                 </form>     
                 <Link to="/cadastro"><Text>Não tem uma conta? Cadastre-se!</Text></Link>  
