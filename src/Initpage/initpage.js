@@ -12,7 +12,6 @@ export default function InitPage(){
     return(
         <>
             <Frame className="frame">
-                
                 <Image src="./images/logo.png" alt="logo TrackIt" /> 
                 <form onSubmit={submit} >
                 <Input onChange={(e)=>(setEmail(e.target.value))} value={email}type="email" placeholder="email" required /> 

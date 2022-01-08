@@ -30,4 +30,25 @@ width: 40px;
 height: 35px;
 border-radius: 4.63636px;
 border:none;
+
+`
+
+export const Input =styled.input`
+
+    border: 1px solid #D5D5D5;
+    width:100%;
+    height: 45px;
+    border-radius: 5px;
+
+&    ::placeholder{
+    color:#DBDBDB;
+    font-family: Lexend Deca;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-left:11px;
+}
 `
