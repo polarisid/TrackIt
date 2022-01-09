@@ -18,18 +18,37 @@ letter-spacing: 0em;
 color:#126BA5;
 `
 
-export const Button =styled.button`
-padding-top:0px;
-font-size: 27px;
+export const VoidText =styled.p`
+margin-top:30px;
+font-family: Lexend Deca;
+font-size: 18px;
+font-style: normal;
 font-weight: 400;
-line-height: 34px;
+line-height: 22px;
 letter-spacing: 0em;
-color:#ffffff;
-background-color: #52B6FF;
-width: 40px;
-height: 35px;
-border-radius: 4.63636px;
-border:none;
+text-align: left;
+color:#666666;
+`
+
+export const Button =styled.button`
+    padding-top:0px;
+    font-size: 27px;
+    font-weight: 400;
+    line-height: 34px;
+    letter-spacing: 0em;
+    color:#ffffff;
+    background-color: #52B6FF;
+    width: 40px;
+    height: 35px;
+    border-radius: 4.63636px;
+    border:none;
+    transition: all .3s ease;
+    &:hover
+    {
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+    }
 
 `
 
@@ -51,4 +70,8 @@ export const Input =styled.input`
     text-align: left;
     margin-left:11px;
 }
+&:focus{
+    border-bottom: 2px solid #26a69a;
+}
+
 `

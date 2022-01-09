@@ -1,4 +1,4 @@
-import {Frame,SubBar,Button,Input} from './style'
+import {Frame,SubBar,Button,Input,VoidText} from './style'
 import TopBar from "../Elements/TopBar"
 import BottomBar from '../Elements/BottomBar'
 import styled, { css }  from 'styled-components'
@@ -13,25 +13,12 @@ export default function HabitosPage(){
     const [quinta,setQuinta]=  useState(false);
     const [sexta,setSexta]=  useState(false);
     const [sabado,setSabado]=  useState(false);
+    const [visible,setVisible] =useState(false);
+    const[habit,setHabit] = useState('');
 
-    function Create(){
+    function Habit(){
         return(<>
-            <CreateContainer>
-            <Input placeholder="nome do hábito"></Input>
-            <div className="week">
-                <Day $state={domingo} onClick={()=>setDomingo(!domingo)}> D</Day> 
-                <Day $state={segunda} onClick={()=>setSegunda(!segunda)}> S</Day> 
-                <Day $state={terça} onClick={()=>setTerça(!terça)}> T</Day> 
-                <Day $state={quarta} onClick={()=>setQuarta(!quarta)}> Q</Day> 
-                <Day $state={quinta} onClick={()=>setQuinta(!quinta)}> Q</Day> 
-                <Day $state={sexta} onClick={()=>setSexta(!sexta)}> S</Day> 
-                <Day $state={sabado} onClick={()=>setSabado(!sabado)}> S</Day> 
-            </div>
-            <div className="bottom">
-            <p>Cancelar</p>
-            <button>salvar</button>
-            </div>
-        </CreateContainer>
+
         </>)
     }
 
@@ -41,9 +28,25 @@ export default function HabitosPage(){
             <Frame>
                 <SubBar>
                 <p>Meus hábitos</p> 
-                <Button>+</Button>
+                <Button onClick={()=>{setVisible(true)}}>+</Button>
                 </SubBar>
-                <Create/>
+                <CreateContainer $mode={visible}>
+                    <Input required onInvalid={(e) => e.target.setCustomValidity("É necessário um nome!")} value ={habit} placeholder="nome do hábito" onChange={(e)=>{setHabit(e.target.value);}}/>
+                    <div className="week">
+                        <Day $state={domingo} onClick={()=>setDomingo(!domingo)}> D</Day> 
+                        <Day $state={segunda} onClick={()=>setSegunda(!segunda)}> S</Day> 
+                        <Day $state={terça} onClick={()=>setTerça(!terça)}> T</Day> 
+                        <Day $state={quarta} onClick={()=>setQuarta(!quarta)}> Q</Day> 
+                        <Day $state={quinta} onClick={()=>setQuinta(!quinta)}> Q</Day> 
+                        <Day $state={sexta} onClick={()=>setSexta(!sexta)}> S</Day> 
+                        <Day $state={sabado} onClick={()=>setSabado(!sabado)}> S</Day> 
+                    </div>
+                    <div className="bottom">
+                    <p onClick={()=>{setVisible(false)}}> Cancelar</p>
+                    <button> salvar</button>
+                    </div>
+                </CreateContainer>
+                <VoidText>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</VoidText>
             </Frame>
             <BottomBar/>
         </>
@@ -60,7 +63,7 @@ position:relative;
         transform: scale(1.2);
 }
 
-// transition: all 2s ease;
+transition: all .3s ease;
 ${(props) => {
     switch (props.$state) {
         case true:
@@ -106,73 +109,108 @@ ${(props) => {
 `
 
 const CreateContainer=styled.div`
-margin-top:20px;
-border-radius: 5px;
-width: 100%;
-padding: 20px;
-background-color:#FFFFFF;
-display:flex;
-justify-content:center;
-flex-direction:column;
-input{
-    border: 1px solid #D5D5D5;
-    width:100%;
-    height: 45px;
-    border-radius: 5px;
 
-}
-input::placeholder{
-    color:#DBDBDB;
-    font-family: Lexend Deca;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 25px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin-left:11px;
-}
-p{
-    font-family: Lexend Deca;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 20px;
-letter-spacing: 0em;
-text-align: center;
-color:#52B6FF;
+${(props)=> {
+    switch (props.$mode){
+        case true: 
+        return css`
+            margin-top:20px;
+            border-radius: 5px;
+            width: 100%;
+            padding: 20px;
+            background-color:#FFFFFF;
+            display:flex;
+            justify-content:center;
+            flex-direction:column;
+            input{
+                border: 1px solid #D5D5D5;
+                width:100%;
+                height: 45px;
+                border-radius: 5px;
 
-}
-.bottom{
-    display:flex;
-    justify-content:end;
-    align-items:center;
-}
-button{
-width: 84px;
-height: 35px;
-background-color: #52B6FF;
-border-radius: 4.63636px;
-color:#fff; 
-border:none;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 20px;
-letter-spacing: 0em;
-text-align: center;
-margin-left:24px;
-}
+            }
+            input::placeholder{
+                color:#DBDBDB;
+                font-family: Lexend Deca;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 25px;
+                letter-spacing: 0em;
+                text-align: left;
+                margin-left:11px;
+                padding:10px;
+            }
+            input:focus{
+                border-bottom: 2px solid #26a69a;
+            }
+            p{
+                font-family: Lexend Deca;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0em;
+                text-align: center;
+                color:#52B6FF;
+                transition: all .3s ease;
 
-.week{
-display:flex;
-align-items: start;
-justify-content: start;
-margin: 10px 0px 40px 0px;
-}
+            }
+            p:hover
+            {
+                -webkit-transform: scale(1.1);
+                -ms-transform: scale(1.1);
+                transform: scale(1.1);
+            }
+            .bottom{
+                display:flex;
+                justify-content:end;
+                align-items:center;
+            }
+            button{
+                width: 84px;
+                height: 35px;
+                background-color: #52B6FF;
+                border-radius: 4.63636px;
+                color:#fff; 
+                border:none;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0em;
+                text-align: center;
+                margin-left:24px;
+                transition: all .3s ease;
+            }
+            button:hover
+            {
+                -webkit-transform: scale(1.1);
+                -ms-transform: scale(1.1);
+                transform: scale(1.1);
+            }
+            
 
-.week-day{
+            .week{
+                display:flex;
+                align-items: start;
+                justify-content: start;
+                margin: 10px 0px 40px 0px;
+            }
+                ` 
+        case false:
+            return css`
+            display:none;
+            opacity: 0;
+            `
+        default:
+            return css`
+            diplay:none;
+            background-color:black;
+        `
+    };
+}}
 
-}
+
 
 `
