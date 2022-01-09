@@ -15,6 +15,9 @@ line-height: 26px;
 text-align: center;
 `
 export const Input =styled.input`
+:disabled{
+    background-color:#F2F2F2;
+}
 width:303px;
 height:45px;
 border-radius:4.64px;
