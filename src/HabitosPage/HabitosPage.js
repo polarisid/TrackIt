@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router';
 import {BallTriangle} from 'react-loader-spinner'
 // import Habit from "../Elements/Habit"
 
-export default function HabitosPage(){
+export default function HabitosPage({percent, setPercent}){
     const [domingo,setDomingo]=  useState(false);
     const [segunda,setSegunda]=  useState(false);
     const [terça,setTerça]=  useState(false);
@@ -151,7 +151,7 @@ export default function HabitosPage(){
                 {habits==null||habits.length==0?<VoidText>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</VoidText>:habits.map((item,index)=> <Habit key={index} id={item.id} name ={item.name} token={token}week={item.days}/> )}
                { console.log(habits)} 
             </Frame>
-            <BottomBar/>
+            <BottomBar percent={percent}/>
         </>
     )
 }

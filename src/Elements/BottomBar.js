@@ -7,7 +7,8 @@ import {
 
 
   
-export default function BottomBar(){
+export default function BottomBar({percent}){
+
     return (
         <>
         <BottomBarContainer>
@@ -16,7 +17,7 @@ export default function BottomBar(){
                 <StyledLink to="/hoje">
                     <FloatButton>
                         <CircularProgressbar
-                            value={12}
+                            value={percent}
                             text={`Hoje`}
                             background
                             backgroundPadding={6}

@@ -18,21 +18,26 @@ else{
 
 var semana = ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"];
 
-export default function HojePage(){
+export default function HojePage({percent,setPercent}){
 
   const navigate = useNavigate();
   const { token } = useContext(UserContext);
   const [habits,setHabits]=useState(null)
+  let doneNumber=0;
+  let countHabit=0;
   useEffect(()=>{
     const promisse2 = axios.get(
     "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today",
     {headers: { Authorization: `Bearer ${token}`}})
-    promisse2.then(response=>{
-      
-        for(let i=0;i<response.data.length;i++){console.log("cria")}
-      
+    promisse2.then(response=>{     
       setHabits(response.data);
-      console.log(response.data)
+      countHabit=response.data.length;
+      doneNumber=0;
+
+      for(let i=0;i<response.data.length;i++){
+        if(response.data[i].done){doneNumber++}}
+      
+      setPercent((doneNumber/countHabit)*100)
     })
     console.log(habits)
     promisse2.catch(e=>{alert("logue novamente"); navigate("/")})
@@ -69,7 +74,16 @@ export default function HojePage(){
     const promisse2 = axios.get(
       "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today",
       {headers: { Authorization: `Bearer ${token}`}})
-      promisse2.then(response=>{setHabits(response.data);console.log(response.data)})
+      promisse2.then(response=>{
+        setHabits(response.data);
+        countHabit=response.data.length;
+        doneNumber=0;
+        for(let i=0;i<response.data.length;i++){
+          if(response.data[i].done){doneNumber++}}
+        console.log(doneNumber)
+        setPercent((doneNumber/countHabit)*100)
+        
+      })
       console.log(habits)
       promisse2.catch(e=>{alert("logue novamente"); navigate("/")})
   }
@@ -91,7 +105,6 @@ export default function HojePage(){
     )
   }
 
-
     return(
     <>
       <TopBar image={imageLink}/>
@@ -99,12 +112,12 @@ export default function HojePage(){
         <Frame>
             <SubBar>
             <p>{week}, {date}</p> 
-            <p className="sub-text">67% dos hábitos concluídos</p>
+            <p className="sub-text">{Math.ceil(percent)}% dos hábitos concluídos</p>
            </SubBar>
            {habits==null||habits.length==0?<VoidText>Você não tem nenhum hábito cadastrado para hoje. Adicione um hábito para começar a trackear!</VoidText>:habits.map((item,index)=> <Habit key={index} name={item.name} id={item.id} now={item.currentSequence} record={item.highestSequence} done={item.done}/> )}
             {console.log(habits)}
         </Frame>
-      <BottomBar/>
+      <BottomBar percent={percent}/>
         
     </>
     )
