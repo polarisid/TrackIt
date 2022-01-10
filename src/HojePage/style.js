@@ -7,6 +7,7 @@ min-height:100vh;
 background-color:#F2F2F2;
 `
 export const Color=styled.p`
+padding-left:5px;
 ${(props=>{
     switch(props.$color){
         case true:
@@ -26,6 +27,7 @@ ${(props=>{
 `
 
 export const Color2=styled.p`
+margin-left:5px;
 ${(props=>{
     switch(props.$color){
         case true:
@@ -64,16 +66,15 @@ letter-spacing: 0em;
 text-align: left;
 margin-bottom:10px;
 }
-p{
+.p{
     display: flex;
-font-family: Lexend Deca;
-font-size: 13px;
-font-style: normal;
-font-weight: 400;
-line-height: 16px;
-letter-spacing: 0em;
-text-align: left;
-
+    font-family: Lexend Deca;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
 }
 `
 export const VoidText =styled.p`

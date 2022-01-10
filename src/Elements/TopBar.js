@@ -1,5 +1,6 @@
 import {TopBarContainer,Image} from './style'
 import {useNavigate} from 'react-router-dom'
+
 export default function TopBar({image}){
     const navigate = useNavigate();
 

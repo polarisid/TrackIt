@@ -60,10 +60,12 @@ export default function HabitosPage(){
         if(indexes.length==0){
             alert("Por favor, selecione algum dia da semana")
             setDisabled(false);
+            return
         }
-        if(habit==null||habit==''){
+        else if(habit==null||habit==''){
             alert("Por favor, selecione um nome")
             setDisabled(false);
+            return
         }
         else{
             let data={

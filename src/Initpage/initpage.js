@@ -17,10 +17,11 @@ export default function InitPage({setUserdata,userdata}){
             navigate("/hoje")
         }
     },[])
+    
     function submit(event){
         event.preventDefault();
         const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login",{
-            email: email,
+            email: email.toLowerCase(),
             password: password
         })
         promisse.then(response=>{
@@ -38,7 +39,7 @@ export default function InitPage({setUserdata,userdata}){
             setDisabled(false)
         })
     }
-        let  dataLocal = localStorage.getItem('Dados_user');
+        
 
 
     return(

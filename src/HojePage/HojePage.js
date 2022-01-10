@@ -6,25 +6,35 @@ import axios from 'axios';
 import { useState,useContext,useEffect } from 'react'
 import UserContext from "../contexts/UserContext";
 import { useNavigate } from 'react-router';
-const data  = JSON.parse(localStorage.getItem("Dados_user"))
-
-let imageLink='';
-if(data==null){
-   
-}
-else{
-    imageLink = data.image;
-}
 
 var semana = ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"];
 
+
+let imageLink='';
 export default function HojePage(){
+  let data  = JSON.parse(localStorage.getItem("Dados_user"))
   const { percent,setPercent } = useContext(UserContext)
   const navigate = useNavigate();
   const { token } = useContext(UserContext);
   const [habits,setHabits]=useState(null)
   let doneNumber=0;
   let countHabit=0;
+
+  
+  let count=0;
+  while(data==null){
+    data  = JSON.parse(localStorage.getItem("Dados_user"))
+    count++;
+    if(count>100){
+      navigate("/")
+      break;
+      
+    }
+  }
+  {
+      imageLink = data.image;
+  }
+
   useEffect(()=>{
     const promisse2 = axios.get(
     "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today",
@@ -92,8 +102,8 @@ export default function HojePage(){
       <HabitContainer>
       <div>
         <h1>{name}</h1>
-        <p>Sequencia Atual: <Color $color={done}>  {now} dias</Color></p>  
-        <p>Seu recorde: <Color2 $color={done>=record}>{record} dias</Color2></p>  
+        <div className="p">Sequencia Atual: <Color $color={done}>  {now} dias</Color></div>  
+        <div className="p">Seu recorde: <Color2 $color={done>=record}>{record} dias</Color2></div>  
       </div>
       <Check  disabled={true} id={`${done},${id}`}  onClick={(event)=>{doneHabit(event.target.id)}} $state={done}>
       <ion-icon disabled={true} id={`${done},${id}`}  name="checkmark-outline"></ion-icon>

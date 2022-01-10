@@ -16,7 +16,7 @@ export default function RegisterPage(){
         event.preventDefault();
 
         const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up",{
-            email: email,
+            email: email.toLowerCase(),
             name: name,
             image: photo,
             password: password

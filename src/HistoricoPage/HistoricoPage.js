@@ -3,17 +3,28 @@ import BottomBar from '../Elements/BottomBar'
 import {Frame,SubBar} from './style'
 import { useState,useContext,useEffect } from 'react'
 import UserContext from "../contexts/UserContext";
-const data  = JSON.parse(localStorage.getItem("Dados_user"))
-
+import {useNavigate} from 'react-router-dom'
 let imageLink='';
-if(data==null){
-    console.log("aa")
-}
-else{
-    imageLink = data.image;
-}
+
+
+
 export default function HistoricoPage(){
+    const navigate =useNavigate()
+    let data  = JSON.parse(localStorage.getItem("Dados_user"))
     const { percent,setPercent } = useContext(UserContext)
+    let count=0;
+    while(data==null){
+    data  = JSON.parse(localStorage.getItem("Dados_user"))
+    count++;
+    if(count>100){
+     navigate("/")
+    break;
+    
+    }
+    }
+    {
+    imageLink = data.image;
+    }
     return(
 
         <>
