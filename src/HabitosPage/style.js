@@ -64,6 +64,9 @@ ${(props) => {
 export const TopContainer =styled.div`
 display:flex;
 justify-content:space-between;
+ion-icon{
+    cursor:pointer;
+}
 `
 export const Week =styled.div`
     display:flex;
@@ -101,8 +104,6 @@ export const  SButton = styled.button`
     }
 
 `
-
-
 export const CreateContainer=styled.div`
 
 ${(props)=> {
