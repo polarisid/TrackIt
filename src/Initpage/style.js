@@ -4,6 +4,12 @@ export const Image =styled.img`
 margin-bottom:32px;
 `
 export const Button = styled.button`
+:disabled{
+    background-color:#86CCFE;
+}
+display:flex;
+align-items:center;
+justify-content:center;
 width:303px;
 height:45px;
 border:none;

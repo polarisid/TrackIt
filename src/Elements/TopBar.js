@@ -1,5 +1,6 @@
 import {TopBarContainer,Image} from './style'
 export default function TopBar({image}){
+
     return (
         <>
             <TopBarContainer>

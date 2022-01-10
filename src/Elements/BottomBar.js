@@ -1,5 +1,4 @@
-import {BottomBarContainer,FloatButton,UpFrame} from './style'
-
+import {BottomBarContainer,FloatButton,UpFrame,StyledLink} from './style'
 import {
     CircularProgressbar,
     buildStyles
@@ -12,24 +11,26 @@ export default function BottomBar(){
     return (
         <>
         <BottomBarContainer>
-            <p>Hábitos</p>
+            <StyledLink to="/habitos"><p>Hábitos</p></StyledLink >
             <UpFrame >
-            <FloatButton>
-                <CircularProgressbar
-                    value={12}
-                    text={`Hoje`}
-                    background
-                    backgroundPadding={6}
-                    styles={buildStyles({
-                    backgroundColor: "#52B6FF",
-                    textColor: "#fff",
-                    pathColor: "#fff",
-                    trailColor: "transparent"
-                    })}
-                />
-            </FloatButton>
+                <StyledLink to="/hoje">
+                    <FloatButton>
+                        <CircularProgressbar
+                            value={12}
+                            text={`Hoje`}
+                            background
+                            backgroundPadding={6}
+                            styles={buildStyles({
+                            backgroundColor: "#52B6FF",
+                            textColor: "#fff",
+                            pathColor: "#fff",
+                            trailColor: "transparent"
+                            })}
+                        />
+                    </FloatButton>
+                </StyledLink>
             </UpFrame>
-            <p>Histórico</p>
+           <StyledLink to="/historico"><p>Histórico</p></StyledLink>
         </BottomBarContainer>
         </>
     )

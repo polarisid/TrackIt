@@ -3,23 +3,35 @@ import InitPage from './Initpage/initpage'
 import RegisterPage from './RegisterPage/RegistePage';
 import HabitosPage from './HabitosPage/HabitosPage';
 import HojePage from './HojePage/HojePage';
+import HistoricoPage from './HistoricoPage/HistoricoPage';
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import UserContext from "./contexts/UserContext";
 export default function App(){
-    const [token, setToken]= useState('');
+    const tokenOnLocalStorage = localStorage.getItem("token");
+    const [token, setToken]= useState(tokenOnLocalStorage);
     const [userdata,setUserdata] = useState(null);
+    
+
+    function setAndPersistToken(token) {
+		setToken(token);
+		localStorage.setItem("token", token);
+	}
     return(
         <>
-        <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<InitPage setToken={setToken} setUserdata={setUserdata} userdata={userdata}/>}/>
-            <Route path="/cadastro"element={<RegisterPage/>} /> 
-            <Route path="/hoje" element={<HojePage token={token}/>}/> 
-            <Route path="/habitos"element={<HabitosPage/>} />  
-            
-            </Routes>
-        </BrowserRouter>
+        <UserContext.Provider value={{token, setToken,setAndPersistToken}}>
+            <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<InitPage setToken={setToken} setUserdata={setUserdata} userdata={userdata}/>}/>
+                <Route path="/cadastro"element={<RegisterPage/>} /> 
+                <Route path="/hoje" element={<HojePage token={token}/>}/> 
+                <Route path="/habitos"element={<HabitosPage token={token}/>} />  
+                <Route path="/historico"element={<HistoricoPage />} />  
+                
+                </Routes>
+            </BrowserRouter>
+        </UserContext.Provider>
         
         </>
     )
