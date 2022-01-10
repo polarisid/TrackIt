@@ -24,7 +24,7 @@ export default function RegisterPage(){
 
         promisse.then(response=>
             {
-                alert("Sucesso, agora faça login!")
+                alert("Sucesso, vamos fazer o login? ;)")
                 setDisabled(false)
                 navigate("/")
                 
@@ -32,7 +32,9 @@ export default function RegisterPage(){
         promisse.catch(error=>
             {
                 setDisabled(false)
-                alert(error.response)})
+                alert(error.response.data.message)
+                console.log(error.response)
+            })
     }
 
     return (

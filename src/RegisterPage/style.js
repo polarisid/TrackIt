@@ -66,5 +66,3 @@ text-decoration-line: underline;
 margin-top:25px;
 
 `
-// export default Button;
-// export default Input;

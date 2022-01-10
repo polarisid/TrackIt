@@ -11,20 +11,18 @@ export default function InitPage({setUserdata,userdata}){
     const { setAndPersistToken } = useContext(UserContext);
     const navigate= useNavigate();
 
-    // useEffect(()=>{
-    //     let  dataLocal = localStorage.getItem('Dados_user');
-    //     if(dataLocal!=null){
-    //         navigate("/hoje")
-    //     }
-    // },[])
+    useEffect(()=>{
+        let  dataLocal = localStorage.getItem('Dados_user');
+        if(dataLocal!=null){
+            navigate("/hoje")
+        }
+    },[])
     function submit(event){
         event.preventDefault();
         const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login",{
             email: email,
             password: password
         })
-        
-
         promisse.then(response=>{
             setAndPersistToken(response.data.token);
             setUserdata(response.data)
@@ -39,7 +37,6 @@ export default function InitPage({setUserdata,userdata}){
             alert(e.response.data.details)
             setDisabled(false)
         })
-        
     }
         let  dataLocal = localStorage.getItem('Dados_user');
 
