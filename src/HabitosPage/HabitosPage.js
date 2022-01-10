@@ -78,8 +78,19 @@ export default function HabitosPage(){
                 data,
                 {headers: { Authorization: `Bearer ${token}`}
                  })
-            promisse.then(response=>{setVisible(false);setDisabled(false);reloadHabit()})
+            promisse.then(response=>{clean();setVisible(false);setDisabled(false);reloadHabit()})
             promisse.catch(e=>{setDisabled(false)})
+        }
+
+        function clean(){
+            setHabit("");
+            setDomingo(false);
+            setSegunda(false);
+            setTerça(false);
+            setQuarta(false);
+            setQuinta(false);
+            setSexta(false)
+            setSabado(false)
         }
 
     }
@@ -111,7 +122,7 @@ export default function HabitosPage(){
         return(
             <>
             <HabitContainer>
-            <TopContainer><p>{name}</p>  <ion-icon id={id} onClick={(event)=>deleteHabit(event)} name="trash-outline"></ion-icon></TopContainer>
+            <TopContainer><p>{name}</p>  <ion-icon id={id} onClick={(event)=>{window.confirm("Você quer mesmo excluir este Hábito")&&deleteHabit(event)}} name="trash-outline"></ion-icon></TopContainer>
             
             <Week>
                 {weekDaysbefore.map((items,index)=><Day key={index} $state={items.state} >{items.n}</Day>)}
