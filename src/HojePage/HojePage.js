@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router';
 
 var semana = ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"];
 
-
 let imageLink='';
 export default function HojePage(){
   let data  = JSON.parse(localStorage.getItem("Dados_user"))
@@ -21,19 +20,7 @@ export default function HojePage(){
   let countHabit=0;
 
   
-  let count=0;
-  while(data==null){
-    data  = JSON.parse(localStorage.getItem("Dados_user"))
-    count++;
-    if(count>100){
-      navigate("/")
-      break;
-      
-    }
-  }
-  {
-      imageLink = data.image;
-  }
+
 
   useEffect(()=>{
     const promisse2 = axios.get(
@@ -52,6 +39,15 @@ export default function HojePage(){
    
     promisse2.catch(e=>{alert("logue novamente"); navigate("/")})
 },[])
+
+  let count=0;
+  if(data==null){
+    navigate("/")
+  }
+ else{
+  imageLink = data.image;
+ }
+
   
   var date = dayjs().locale('PT-BR').format('DD/MM')
   var week =semana[dayjs().format('d')]

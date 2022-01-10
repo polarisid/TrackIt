@@ -13,18 +13,12 @@ export default function HistoricoPage(){
     let data  = JSON.parse(localStorage.getItem("Dados_user"))
     const { percent,setPercent } = useContext(UserContext)
     let count=0;
-    while(data==null){
-    data  = JSON.parse(localStorage.getItem("Dados_user"))
-    count++;
-    if(count>100){
-     navigate("/")
-    break;
-    
-    }
-    }
-    {
-    imageLink = data.image;
-    }
+    if(data==null){
+        navigate("/");
+      }
+     else{
+      imageLink = data.image;
+     }
     return(
 
         <>
