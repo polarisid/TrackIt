@@ -1,7 +1,7 @@
 import {Button,Input,Frame,Text, Image} from './style'
 import axios from 'axios';
 import {Link,useNavigate} from 'react-router-dom'
-import { useState, useContext} from 'react';
+import { useState, useContext,useEffect} from 'react';
 import {BallTriangle} from 'react-loader-spinner'
 import UserContext from "../contexts/UserContext";
 export default function InitPage({setUserdata,userdata}){
@@ -11,6 +11,12 @@ export default function InitPage({setUserdata,userdata}){
     const { setAndPersistToken } = useContext(UserContext);
     const navigate= useNavigate();
 
+    // useEffect(()=>{
+    //     let  dataLocal = localStorage.getItem('Dados_user');
+    //     if(dataLocal!=null){
+    //         navigate("/hoje")
+    //     }
+    // },[])
     function submit(event){
         event.preventDefault();
         const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login",{
@@ -22,7 +28,6 @@ export default function InitPage({setUserdata,userdata}){
         promisse.then(response=>{
             setAndPersistToken(response.data.token);
             setUserdata(response.data)
-            console.log(response.data)
             localStorage.setItem("Dados_user",JSON.stringify(response.data))
             navigate("/hoje")
         })
@@ -32,17 +37,12 @@ export default function InitPage({setUserdata,userdata}){
         promisse.catch((e)=>
             {
             alert(e.response.data.details)
-            console.log(e.response.data)
             setDisabled(false)
         })
         
     }
         let  dataLocal = localStorage.getItem('Dados_user');
-        console.log(dataLocal)
-        // if(dataLocal!=null){
-        //     navigate("/hoje")
-        //     console.log("asa")
-        // }
+
 
     return(
         <>

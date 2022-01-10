@@ -14,13 +14,14 @@ export default function App(){
     const [userdata,setUserdata] = useState(null);
     const [percent,setPercent]= useState(0);
 
+
     function setAndPersistToken(token) {
 		setToken(token);
 		localStorage.setItem("token", token);
 	}
     return(
         <>
-        <UserContext.Provider value={{token, setToken,setAndPersistToken}}>
+        <UserContext.Provider value={{token, setToken,setAndPersistToken, setPercent,percent}}>
             <BrowserRouter>
             <Routes>
                 <Route path="/" element={<InitPage setToken={setToken} setUserdata={setUserdata} userdata={userdata}/>}/>

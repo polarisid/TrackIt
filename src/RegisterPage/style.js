@@ -8,6 +8,12 @@ margin:auto auto;
 margin-bottom:20px;
 `
 export const Button = styled.button`
+:disabled{
+    background-color:#86CCFE;
+}
+display:flex;
+align-items:center;
+justify-content:center;
 width:303px;
 height:45px;
 border:none;
@@ -19,6 +25,9 @@ line-height: 26px;
 text-align: center;
 `
 export const Input =styled.input`
+:disabled{
+    background-color:#F2F2F2;
+}
 width:303px;
 height:45px;
 border-radius:4.64px;

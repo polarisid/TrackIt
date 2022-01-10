@@ -1,4 +1,4 @@
-import {Frame,SubBar,HabitContainer,Check,VoidText} from './style'
+import {Frame,SubBar,HabitContainer,Check,VoidText,Color,Color2} from './style'
 import TopBar from "../Elements/TopBar"
 import BottomBar from '../Elements/BottomBar'
 import dayjs from 'dayjs';
@@ -10,7 +10,7 @@ const data  = JSON.parse(localStorage.getItem("Dados_user"))
 
 let imageLink='';
 if(data==null){
-    console.log("aa")
+   
 }
 else{
     imageLink = data.image;
@@ -18,8 +18,8 @@ else{
 
 var semana = ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"];
 
-export default function HojePage({percent,setPercent}){
-
+export default function HojePage(){
+  const { percent,setPercent } = useContext(UserContext)
   const navigate = useNavigate();
   const { token } = useContext(UserContext);
   const [habits,setHabits]=useState(null)
@@ -39,7 +39,7 @@ export default function HojePage({percent,setPercent}){
       
       setPercent((doneNumber/countHabit)*100)
     })
-    console.log(habits)
+   
     promisse2.catch(e=>{alert("logue novamente"); navigate("/")})
 },[])
   
@@ -47,18 +47,17 @@ export default function HojePage({percent,setPercent}){
   var week =semana[dayjs().format('d')]
 
   function doneHabit(id) {
-    // console.log(id)
     let [done,newid] =id.split(',')
     
-    console.log(newid+"+"+done)
+    
     if((done=="true")){
       const promisseUncheck = axios.post(
         `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${newid}/uncheck`,
         {},
         {headers: { Authorization: `Bearer ${token}`}
          })
-      promisseUncheck.then((response)=>{console.log(response.data);reload()});
-      promisseUncheck.catch((e)=>console.log(e.response))
+      promisseUncheck.then((response)=>{reload()});
+      promisseUncheck.catch((e)=>alert(e.response))
     }
     else{
       const promisseCheck = axios.post(
@@ -66,8 +65,8 @@ export default function HojePage({percent,setPercent}){
         {},
         {headers: { Authorization: `Bearer ${token}`}
          })
-      promisseCheck.then((response)=>{console.log(response.data);reload()});
-      promisseCheck.catch((e)=>console.log(e))
+      promisseCheck.then((response)=>{reload()});
+      promisseCheck.catch((e)=>alert(e.response))
     }
   }
   function reload(){
@@ -80,11 +79,10 @@ export default function HojePage({percent,setPercent}){
         doneNumber=0;
         for(let i=0;i<response.data.length;i++){
           if(response.data[i].done){doneNumber++}}
-        console.log(doneNumber)
+       
         setPercent((doneNumber/countHabit)*100)
         
       })
-      console.log(habits)
       promisse2.catch(e=>{alert("logue novamente"); navigate("/")})
   }
 
@@ -94,8 +92,8 @@ export default function HojePage({percent,setPercent}){
       <HabitContainer>
       <div>
         <h1>{name}</h1>
-        <p>Sequencia Atual: {now} dias</p>  
-        <p>Seu recorde: {record} dias</p>  
+        <p>Sequencia Atual: <Color $color={done}>  {now} dias</Color></p>  
+        <p>Seu recorde: <Color2 $color={done>=record}>{record} dias</Color2></p>  
       </div>
       <Check  disabled={true} id={`${done},${id}`}  onClick={(event)=>{doneHabit(event.target.id)}} $state={done}>
       <ion-icon disabled={true} id={`${done},${id}`}  name="checkmark-outline"></ion-icon>
@@ -112,10 +110,10 @@ export default function HojePage({percent,setPercent}){
         <Frame>
             <SubBar>
             <p>{week}, {date}</p> 
-            <p className="sub-text">{Math.ceil(percent)}% dos hábitos concluídos</p>
+            {percent==0||isNaN(percent)?<p className="sub-text-none">Nenhum Habito concluido ainda</p>: <p className="sub-text">{Math.ceil(percent)}% dos hábitos concluídos</p>}
            </SubBar>
            {habits==null||habits.length==0?<VoidText>Você não tem nenhum hábito cadastrado para hoje. Adicione um hábito para começar a trackear!</VoidText>:habits.map((item,index)=> <Habit key={index} name={item.name} id={item.id} now={item.currentSequence} record={item.highestSequence} done={item.done}/> )}
-            {console.log(habits)}
+            
         </Frame>
       <BottomBar percent={percent}/>
         

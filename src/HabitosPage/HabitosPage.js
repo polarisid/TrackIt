@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router';
 import {BallTriangle} from 'react-loader-spinner'
 // import Habit from "../Elements/Habit"
 
-export default function HabitosPage({percent, setPercent}){
+export default function HabitosPage(){
     const [domingo,setDomingo]=  useState(false);
     const [segunda,setSegunda]=  useState(false);
     const [terça,setTerça]=  useState(false);
@@ -19,6 +19,7 @@ export default function HabitosPage({percent, setPercent}){
     const [visible,setVisible] =useState(false);
     const [habit,setHabit] = useState('');
     const { token } = useContext(UserContext);
+    const { percent} = useContext(UserContext);
     const [habits,setHabits]=useState(null);
     const [disabled,setDisabled]=useState(false);
     const navigate = useNavigate();
@@ -69,7 +70,6 @@ export default function HabitosPage({percent, setPercent}){
                 name: habit,
                 days: indexes
             }
-            console.log(token)
             const promisse = axios.post(
                 "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
                 ,
@@ -88,7 +88,6 @@ export default function HabitosPage({percent, setPercent}){
             ,
             {headers: { Authorization: `Bearer ${token}`}
              })
-        console.log(token)
         promisse3.then(response=>{reloadHabit()})
         promisse3.catch(e=>{})
         
@@ -149,7 +148,6 @@ export default function HabitosPage({percent, setPercent}){
                     </div>
                 </CreateContainer>
                 {habits==null||habits.length==0?<VoidText>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</VoidText>:habits.map((item,index)=> <Habit key={index} id={item.id} name ={item.name} token={token}week={item.days}/> )}
-               { console.log(habits)} 
             </Frame>
             <BottomBar percent={percent}/>
         </>
