@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# TrackIt
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+TrackIt is a tool for you to manage your habits and keep your focus. Use it now 
 
 ## Available Scripts
 
