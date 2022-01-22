@@ -35,7 +35,8 @@ export default function InitPage({setUserdata,userdata}){
         }
         promisse.catch((e)=>
             {
-            alert(e.response.data.details)
+                console.log(e.response.data)
+            alert(e.response.data.message)
             setDisabled(false)
         })
     }

@@ -24,6 +24,7 @@ export const Input =styled.input`
 :disabled{
     background-color:#F2F2F2;
 }
+padding-left: 10px;
 width:303px;
 height:45px;
 border-radius:4.64px;

@@ -1,9 +1,11 @@
 import TopBar from "../Elements/TopBar"
 import BottomBar from '../Elements/BottomBar'
-import {Frame,SubBar} from './style'
+import {Frame,SubBar,SCalendar} from './style'
 import { useState,useContext,useEffect } from 'react'
 import UserContext from "../contexts/UserContext";
 import {useNavigate} from 'react-router-dom'
+import 'react-calendar/dist/Calendar.css';
+import Calendar from 'react-calendar'
 let imageLink='';
 
 
@@ -28,6 +30,7 @@ export default function HistoricoPage(){
             <p>Histórico</p>
         </SubBar>
         <h1>Em breve você poderá ver o histórico dos seus hábitos aqui!</h1>
+        <SCalendar/>
         </Frame>
         
         <BottomBar percent={percent}></BottomBar>

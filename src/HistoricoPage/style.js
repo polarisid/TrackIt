@@ -1,4 +1,14 @@
 import styled from 'styled-components'
+import 'react-calendar/dist/Calendar.css';
+import Calendar from 'react-calendar'
+export const SCalendar =styled(Calendar)`
+
+height: 402px;
+width: 335px;
+left: -2300px;
+top: 2852px;
+border-radius: 10px;
+`
 export const Frame =styled.div`
 padding: 90px 17px;
 width:100%;
