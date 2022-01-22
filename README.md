@@ -1,6 +1,7 @@
 # TrackIt
 
-TrackIt is a tool for you to manage your habits and keep your focus. Use it now 
+TrackIt is a tool for you to manage your habits and keep your focus. 
+Use it now > trackit-roan-six.vercel.app 
 
 ## Available Scripts
 
