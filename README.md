@@ -29,9 +29,3 @@ In the project directory, you can run:
 ![alt text](https://i.imgur.com/zzGjW8H.png) ![alt text](https://i.imgur.com/aCfEa2Y.png)  ![alt text](https://i.imgur.com/jFUDjAP.png) ![alt text](https://i.imgur.com/XNus218.png)  ![alt text](https://i.imgur.com/iv81zU4.png) ![alt text](https://i.imgur.com/klOesHC.png)
 
 
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment) 
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
